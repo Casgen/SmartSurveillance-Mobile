@@ -5,14 +5,18 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import android.content.pm.PackageManager
+import android.os.Binder
 import android.util.Log
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.example.smartsurveillance.R
+import com.google.android.gms.tasks.Task
 import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 
 class SSMessagingService : FirebaseMessagingService() {
 
@@ -31,25 +35,6 @@ class SSMessagingService : FirebaseMessagingService() {
 
     }
 
-    fun obtainToken() {
-        FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
-            if (!task.isSuccessful) {
-                Log.w(
-                    SSMessagingService::class.toString(),
-                    "Fetching FCM registration token failed!",
-                    task.exception
-                )
-            }
-
-            // Get new FCM registration token
-            val token = task.result
-
-            // Log and toast
-            //val msg = getString(R.string.msg_token_fmt, token)
-            Log.d(SSMessagingService::class.toString(), token)
-
-        }
-    }
 
     override fun onMessageReceived(message: RemoteMessage) {
         super.onMessageReceived(message)

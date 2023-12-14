@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "844391314426",
+    "project_id": "smartsurveillance-37001",
+    "storage_bucket": "smartsurveillance-37001.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:844391314426:android:6197719c00f3f53b892a43",
+        "android_client_info": {
+          "package_name": "com.example.smartsurveillance"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqMndgKlJqEgRzFPxNNtWawoOPEJSc9VQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

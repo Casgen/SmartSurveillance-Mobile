@@ -1,12 +1,17 @@
 package com.example.smartsurveillance
 
 import android.app.Application
+import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
+import android.content.ServiceConnection
+import android.os.IBinder
+import androidx.core.content.getSystemService
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import com.example.smartsurveillance.services.SSMessagingService
+import com.example.smartsurveillance.ui.SettingsViewModel
 import com.smartsurveillance_mobile.data.DataStorage
 import com.smartsurveillance_mobile.data.FirebaseRepository
 import com.example.smartsurveillance.ui.async.gallery.GalleryViewModel
@@ -27,8 +32,8 @@ val baseModule = module {
     single { FirebaseRepository() }
     single { DataStorage(androidApplication().dataStore) }
 
-
     viewModel { GalleryViewModel(get(), androidContext().filesDir) }
+    viewModel { SettingsViewModel() }
 }
 
 private const val DataStoreName = "SmartSurveillanceDataStore"
@@ -36,10 +41,8 @@ private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(Da
 
 class App : Application() {
 
-
     override fun onCreate() {
         super.onCreate()
-
         applicationContext.startService(Intent(applicationContext, SSMessagingService::class.java))
 
         startKoin {
